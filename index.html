@@ -625,9 +625,10 @@
       <div>
         <p style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;">Certifications</p>
         <div class="cert-list">
-          <div class="cert-item">
+          <div class="cert-item" onclick="document.getElementById('cert-modal').style.display='flex'" style="cursor:pointer;display:flex;align-items:center;gap:0.6rem;" title="Click to view certificate">
             <span class="cert-dot"></span>
-            <span>Data Analysis Training (Excel, SQL, Power BI) — 2026</span>
+            <span style="text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--green);">Data Analytics — TS Academy, March 2026</span>
+            <span style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;color:var(--green);border:1px solid var(--green);padding:0.15rem 0.4rem;border-radius:2px;">VIEW</span>
           </div>
           <div class="cert-item">
             <span class="cert-dot"></span>
@@ -687,6 +688,19 @@
   </div>
 </footer>
 
+<!-- ── CERTIFICATE MODAL ── -->
+<div id="cert-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.82);align-items:center;justify-content:center;padding:2rem;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#0d0d0d;color:#f7f3eb;max-width:740px;width:100%;position:relative;border-top:3px solid #4caf50;">
+    <button onclick="document.getElementById('cert-modal').style.display='none'" style="position:absolute;top:0.8rem;right:1rem;background:transparent;border:none;color:#4caf50;font-size:1.6rem;cursor:pointer;line-height:1;z-index:1;" title="Close">✕</button>
+    <img src="data-analytics-certificate.png" alt="Data Analytics Certificate — TS Academy" style="width:100%;display:block;"/>
+    <div style="padding:1.5rem 2rem 2rem;">
+      <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:#4caf50;margin-bottom:0.5rem;">TS Academy · Certified March 31, 2026</p>
+      <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:600;margin-bottom:0.5rem;">Data Analytics</h3>
+      <p style="font-size:0.9rem;color:rgba(247,243,235,0.75);line-height:1.7;">Awarded to <strong>Favour Nwobi</strong> upon successful completion of a 3-month intensive training programme covering Data Analysis, Excel, SQL, and Power BI. Certificate ID: TS177499355439.</p>
+    </div>
+  </div>
+</div>
+
 <!-- ── GREENCORE MODAL ── -->
 <div id="greencore-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.78);align-items:center;justify-content:center;padding:2rem;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0d0d0d;color:#f7f3eb;max-width:780px;width:100%;max-height:90vh;overflow-y:auto;position:relative;border-top:3px solid #4caf50;">
@@ -738,7 +752,10 @@
 
   // close modal on Escape key
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') document.getElementById('greencore-modal').style.display = 'none';
+    if (e.key === 'Escape') {
+      document.getElementById('greencore-modal').style.display = 'none';
+      document.getElementById('cert-modal').style.display = 'none';
+    }
   });
 </script>
 </body>
