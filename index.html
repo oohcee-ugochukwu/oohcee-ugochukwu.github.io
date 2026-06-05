@@ -1,566 +1,651 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Name — Data Analyst</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nwobi Ugochukwu Favour — Geophysicist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <!-- CDN icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --ink: #1a1916;
-    --ink-muted: #6b6960;
-    --ink-faint: #c8c5bc;
-    --paper: #f5f3ee;
-    --paper-warm: #ede9e0;
-    --accent: #2d5a3d;
-    --accent-light: #e8f0eb;
-    --rule: #ddd9d0;
-    --mono: 'DM Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
-    --serif: 'DM Serif Display', serif;
-    --max: 860px;
-  }
+    :root {
+      --cream:  #f7f3eb;
+      --cream2: #efe9dc;
+      --black:  #0d0d0d;
+      --green:  #2e7d32;
+      --green-light: #4caf50;
+      --green-pale:  #e8f5e9;
+      --line:   rgba(46,125,50,0.18);
+      --text:   #1a2e1a;
+    }
 
-  html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
 
-  body {
-    font-family: var(--sans);
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.6;
-    font-weight: 300;
-  }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
-    z-index: 100;
-    padding: 0 2rem;
-  }
-  .nav-inner {
-    max-width: var(--max);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 56px;
-  }
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--ink-muted);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-size: 13px;
-    color: var(--ink-muted);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--ink); }
+    /* noise grain */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.4;
+    }
 
-  /* ── LAYOUT ── */
-  main { padding-top: 56px; }
-  section { padding: 80px 2rem; }
-  .container { max-width: var(--max); margin: 0 auto; }
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      min-height: 100vh;
+      background: var(--black);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 6vw 4rem;
+      overflow: hidden;
+    }
 
-  /* ── HERO ── */
-  #hero {
-    padding-top: 120px;
-    padding-bottom: 100px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .hero-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .hero-label::before {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 1px;
-    background: var(--ink-muted);
-  }
-  .hero-name {
-    font-family: var(--serif);
-    font-size: clamp(52px, 8vw, 96px);
-    line-height: 1.0;
-    color: var(--ink);
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-  .hero-name em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .hero-title {
-    font-family: var(--serif);
-    font-size: clamp(28px, 4vw, 44px);
-    line-height: 1.1;
-    color: var(--ink-muted);
-    margin-bottom: 32px;
-    font-style: italic;
-  }
-  .hero-desc {
-    max-width: 520px;
-    color: var(--ink-muted);
-    font-size: 16px;
-    line-height: 1.75;
-    margin-bottom: 40px;
-  }
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 24px;
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    font-family: var(--mono);
-    transition: opacity 0.2s;
-  }
-  .hero-cta:hover { opacity: 0.85; }
-  .hero-cta svg { transition: transform 0.2s; }
-  .hero-cta:hover svg { transform: translateX(3px); }
+    .seismic-bg { position: absolute; inset: 0; opacity: 0.15; }
+    .seismic-bg svg { width: 100%; height: 100%; }
 
-  /* ── TOOLS ── */
-  #tools { border-bottom: 1px solid var(--rule); background: var(--paper-warm); }
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-top: 48px;
-  }
-  .tool-card {
-    background: var(--paper-warm);
-    padding: 28px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    transition: background 0.2s;
-  }
-  .tool-card:hover { background: var(--paper); }
-  .tool-icon {
-    font-family: var(--mono);
-    font-size: 20px;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-  .tool-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink);
-  }
-  .tool-desc {
-    font-size: 12px;
-    color: var(--ink-muted);
-    line-height: 1.5;
-    font-family: var(--mono);
-  }
+    .strata {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+      background: linear-gradient(to top,#0d1f0d 0%,#1a3a1a 30%,#2e7d32 65%,transparent 100%);
+      opacity: 0.3;
+    }
 
-  /* ── SECTION HEADER ── */
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-  .section-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--ink-faint);
-    letter-spacing: 0.08em;
-  }
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(28px, 4vw, 40px);
-    color: var(--ink);
-    line-height: 1.1;
-  }
+    .header-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--green-light); margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
+    }
 
-  /* ── PROJECTS ── */
-  #projects { border-bottom: 1px solid var(--rule); }
-  .project-list { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
-  .project-item {
-    background: var(--paper);
-    padding: 36px 32px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 24px;
-    align-items: start;
-    transition: background 0.2s;
-    cursor: default;
-  }
-  .project-item:hover { background: var(--accent-light); }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-  .tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    padding: 3px 8px;
-    background: var(--paper-warm);
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    border: 1px solid var(--rule);
-  }
-  .project-item:hover .tag { background: #fff; }
-  .project-name {
-    font-family: var(--serif);
-    font-size: 22px;
-    color: var(--ink);
-    margin-bottom: 8px;
-    line-height: 1.2;
-  }
-  .project-desc {
-    font-size: 14px;
-    color: var(--ink-muted);
-    line-height: 1.65;
-    max-width: 560px;
-  }
-  .project-stat {
-    text-align: right;
-    flex-shrink: 0;
-  }
-  .stat-num {
-    font-family: var(--serif);
-    font-size: 36px;
-    color: var(--accent);
-    line-height: 1;
-    display: block;
-  }
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--ink-muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
+    header h1 {
+      font-size: clamp(3rem, 8vw, 7rem); font-weight: 600; line-height: 1.0;
+      color: var(--cream); letter-spacing: -0.02em;
+      opacity: 0; animation: fadeUp 0.9s ease forwards 0.4s;
+    }
+    header h1 em { font-style: italic; color: var(--green-light); }
 
-  /* ── ABOUT ── */
-  #about { border-bottom: 1px solid var(--rule); background: var(--paper-warm); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 48px; }
-  .about-text { font-size: 15px; color: var(--ink-muted); line-height: 1.8; }
-  .about-text p + p { margin-top: 16px; }
-  .about-facts { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
-  .fact-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 20px;
-    background: var(--paper-warm);
-    font-size: 13px;
-  }
-  .fact-key { font-family: var(--mono); color: var(--ink-muted); font-size: 11px; letter-spacing: 0.05em; }
-  .fact-val { color: var(--ink); font-weight: 400; }
+    .header-tagline {
+      margin-top: 2rem; font-size: clamp(1rem,2vw,1.3rem); font-weight: 500;
+      color: rgba(247,243,235,0.8); max-width: 520px; line-height: 1.65;
+      opacity: 0; animation: fadeUp 0.9s ease forwards 0.65s;
+    }
 
-  /* ── CONTACT ── */
-  #contact { text-align: center; }
-  .contact-inner { max-width: 480px; margin: 0 auto; }
-  .contact-title {
-    font-family: var(--serif);
-    font-size: clamp(36px, 6vw, 64px);
-    line-height: 1.05;
-    margin-bottom: 20px;
-  }
-  .contact-title em { font-style: italic; color: var(--accent); }
-  .contact-sub { color: var(--ink-muted); font-size: 15px; margin-bottom: 40px; line-height: 1.7; }
-  .contact-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
-  .contact-link {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    color: var(--ink-muted);
-    text-decoration: none;
-    padding-bottom: 2px;
-    border-bottom: 1px solid var(--ink-faint);
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .contact-link:hover { color: var(--accent); border-color: var(--accent); }
+    /* contact icon buttons */
+    .header-meta {
+      margin-top: 3rem; display: flex; gap: 1.4rem; flex-wrap: wrap; align-items: center;
+      opacity: 0; animation: fadeUp 0.9s ease forwards 0.85s;
+    }
+    .contact-link {
+      display: flex; align-items: center; justify-content: center;
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-link:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+    .contact-link svg { width: 56px; height: 56px; display: block; }
+    .contact-link::after {
+      content: attr(data-tip);
+      position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.85); color: #fff;
+      font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em;
+      white-space: nowrap; padding: 0.3rem 0.7rem; border-radius: 4px;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10;
+    }
+    .contact-link:hover::after { opacity: 1; }
 
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 24px 2rem;
-    display: flex;
-    justify-content: center;
-  }
-  .footer-inner {
-    max-width: var(--max);
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 6vw;
+      font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.22em;
+      color: rgba(76,175,80,0.45); text-transform: uppercase;
+      display: flex; align-items: center; gap: 1rem;
+      opacity: 0; animation: fadeUp 1s ease forwards 1.2s;
+    }
+    .scroll-hint::after { content:''; display:block; width:48px; height:1px; background:rgba(76,175,80,0.35); }
 
-  /* ── ANIMATIONS ── */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
+    /* ── MAIN LAYOUT ── */
+    main { max-width: 1100px; margin: 0 auto; padding: 0 6vw; }
 
-  @media (max-width: 640px) {
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .project-item { grid-template-columns: 1fr; }
-    .project-stat { text-align: left; }
-    .nav-links { display: none; }
-  }
-</style>
+    section {
+      padding: 6rem 0; border-bottom: 1px solid var(--line);
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 0.63rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 3rem;
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+    .section-label::after { content:''; flex:1; height:1px; background:var(--line); }
+
+    /* ── PROFILE ── */
+    .profile-grid {
+      display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start;
+    }
+
+    .geo-card {
+      background: var(--black); color: var(--cream);
+      padding: 2.5rem; position: relative; overflow: hidden;
+    }
+    .geo-card::before {
+      content:''; position:absolute; top:-30px; right:-30px;
+      width:120px; height:120px;
+      border:1px solid rgba(76,175,80,0.18); border-radius:50%;
+    }
+    .geo-card::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
+      background: linear-gradient(90deg, var(--green), var(--green-light));
+    }
+    .geo-card h3 {
+      font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.25em;
+      text-transform:uppercase; color:var(--green-light); margin-bottom:1.5rem;
+    }
+    .stat-row { display:flex; flex-direction:column; gap:1.2rem; }
+    .stat-item { display:flex; flex-direction:column; gap:0.25rem; }
+    .stat-value { font-size:2.2rem; font-weight:600; color:var(--cream); line-height:1; }
+    .stat-label {
+      font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.15em;
+      text-transform:uppercase; color:rgba(247,243,235,0.4);
+    }
+
+    .profile-text p { font-size:1.15rem; font-weight:500; line-height:1.85; color:var(--text); }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      display: grid; grid-template-columns: 200px 1fr; gap: 3rem;
+      padding: 2.8rem 0; border-top: 1px solid var(--line);
+    }
+    .exp-item:last-child { border-bottom: 1px solid var(--line); }
+    .exp-date {
+      font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.15em;
+      color:var(--green); text-transform:uppercase; margin-bottom:0.5rem;
+    }
+    .exp-org { font-size:0.85rem; color:var(--green); font-weight:600; }
+    .exp-role { font-size:1.3rem; font-weight:600; color:var(--black); margin-bottom:0.75rem; line-height:1.3; }
+    .exp-bullets { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+    .exp-bullets li {
+      font-size:0.97rem; font-weight:500; color:#2a4a2a; line-height:1.65;
+      padding-left:1.2rem; position:relative;
+    }
+    .exp-bullets li::before { content:'—'; position:absolute; left:0; color:var(--green-light); font-size:0.8rem; }
+
+    /* ── PROJECTS ── */
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2rem; }
+
+    .project-card {
+      padding:2.5rem; background:var(--black); color:var(--cream);
+      position:relative; overflow:hidden; transition:transform 0.3s;
+    }
+    .project-card:hover { transform:translateY(-4px); }
+    .project-card::before {
+      content:attr(data-num); position:absolute; top:1.5rem; right:2rem;
+      font-family:'DM Mono',monospace; font-size:3.5rem; font-weight:500;
+      color:rgba(76,175,80,0.1); line-height:1;
+    }
+    .project-card h3 { font-size:1.1rem; font-weight:600; color:var(--cream); line-height:1.4; margin-bottom:1rem; }
+    .project-card p { font-size:0.9rem; font-weight:500; color:rgba(247,243,235,0.85); line-height:1.7; }
+    .project-tag {
+      display:inline-block; margin-top:1.5rem;
+      font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--green-light); border:1px solid rgba(76,175,80,0.3); padding:0.25rem 0.65rem;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.5rem; }
+
+    .skill-block {
+      padding:2rem; border:1px solid var(--line); position:relative;
+      transition:border-color 0.3s, transform 0.3s;
+    }
+    .skill-block:hover { border-color:var(--green-light); transform:translateY(-3px); }
+    .skill-block::before {
+      content:''; position:absolute; top:0; left:0; width:3px; height:100%;
+      background:linear-gradient(to bottom,var(--green),var(--green-light)); opacity:0; transition:opacity 0.3s;
+    }
+    .skill-block:hover::before { opacity:1; }
+
+    .skill-cat {
+      font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.22em;
+      text-transform:uppercase; color:var(--green); margin-bottom:1.2rem;
+    }
+    .skill-tags { display:flex; flex-wrap:wrap; gap:0.6rem; }
+
+    /* plain text tag */
+    .tag {
+      font-size:0.82rem; font-weight:600; color:#2a4a2a;
+      background:rgba(46,125,50,0.07); padding:0.3rem 0.75rem;
+      border:1px solid rgba(46,125,50,0.18);
+    }
+
+    /* icon tool badge */
+    .tool-badge {
+      display:inline-flex; align-items:center; gap:0.45rem;
+      padding:0.35rem 0.8rem;
+      background: var(--black); color: var(--cream);
+      border:1px solid rgba(76,175,80,0.25);
+      font-size:0.8rem; font-weight:600;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .tool-badge:hover { background:#1a3a1a; border-color:var(--green-light); }
+    .tool-badge i, .tool-badge svg { font-size:1rem; flex-shrink:0; }
+    /* brand colours on icons */
+    .icon-excel   { color:#217346; }
+    .icon-sql     { color:#f29111; }
+    .icon-powerbi { color:#f2c811; }
+    .icon-python  { color:#3776ab; }
+
+    /* ── EDUCATION ── */
+    .edu-row { display:grid; grid-template-columns:1fr; gap:2rem; }
+    .edu-item {
+      padding:2.5rem; border:1px solid var(--line); position:relative;
+    }
+    .edu-item::after {
+      content:''; position:absolute; bottom:0; left:2.5rem;
+      width:40px; height:3px; background:var(--green);
+    }
+    .edu-degree { font-size:1.3rem; font-weight:600; color:var(--black); margin-bottom:0.5rem; line-height:1.3; }
+    .edu-school { font-size:0.85rem; color:var(--green); margin-bottom:0.4rem; font-weight:600; }
+    .edu-year {
+      font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.15em;
+      color:var(--green); text-transform:uppercase;
+    }
+    .edu-courses { margin-top:1.2rem; font-size:0.82rem; color:#3a5a3a; font-style:italic; line-height:1.6; }
+
+    /* ── CERTS & AFFILIATIONS ── */
+    .certs-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
+    .cert-list, .affil-list { display:flex; flex-direction:column; gap:1rem; }
+    .cert-item, .affil-item {
+      display:flex; align-items:flex-start; gap:1rem;
+      padding:1.2rem 0; border-bottom:1px solid var(--line);
+    }
+    .cert-dot { width:6px; height:6px; border-radius:50%; background:var(--green); margin-top:0.45rem; flex-shrink:0; }
+    .cert-item span, .affil-item span { font-size:0.95rem; font-weight:600; color:var(--text); line-height:1.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 4rem 6vw;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;
+    }
+    .footer-name { font-size:1.1rem; font-weight:600; color:var(--cream); letter-spacing:0.04em; }
+    .footer-contact { display:flex; flex-direction: row; gap: 1.2rem; align-items: center; }
+    .footer-icon-link {
+      display: flex; align-items: center; justify-content: center;
+      width: 50px; height: 50px; border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .footer-icon-link:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+    .footer-icon-link svg { width: 50px; height: 50px; display: block; }
+    .footer-icon-link::after {
+      content: attr(data-tip);
+      position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,0.9); color: #0d0d0d;
+      font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.08em;
+      white-space: nowrap; padding: 0.28rem 0.65rem; border-radius: 4px;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10;
+    }
+    .footer-icon-link:hover::after { opacity: 1; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:700px) {
+      .profile-grid, .exp-item, .certs-grid { grid-template-columns:1fr; gap:2rem; }
+      .exp-item { padding:2rem 0; }
+      footer { flex-direction:column; text-align:center; }
+      .footer-contact { text-align:center; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#hero" class="nav-logo">YN.portfolio</a>
-    <ul class="nav-links">
-      <li><a href="#tools">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+<!-- ── HEADER ── -->
+<header>
+  <div class="seismic-bg" aria-hidden="true">
+    <svg viewBox="0 0 1200 600" preserveAspectRatio="none" fill="none">
+      <polyline points="0,300 80,310 120,280 160,320 220,260 280,340 340,230 400,370 440,200 480,390 520,210 560,380 600,220 660,360 720,250 780,330 840,240 900,350 960,290 1000,310 1060,270 1120,300 1200,295"
+        stroke="#4caf50" stroke-width="1.2" opacity="0.6"/>
+      <polyline points="0,330 60,340 100,320 180,350 240,300 300,360 380,270 460,380 510,260 560,360 620,250 680,340 740,290 800,320 880,280 940,300 1000,340 1060,310 1120,330 1200,320"
+        stroke="#2e7d32" stroke-width="0.8" opacity="0.4"/>
+      <polyline points="0,360 100,350 160,370 220,340 300,380 380,320 460,400 540,300 600,380 660,310 740,370 820,330 900,350 980,320 1060,360 1200,340"
+        stroke="#4caf50" stroke-width="0.6" opacity="0.25"/>
+    </svg>
   </div>
-</nav>
+  <div class="strata"></div>
+
+  <p class="header-label">Geophysicist · Data Analyst · Project Supervisor</p>
+  <h1>Nwobi<br><em>Ugochukwu</em><br>Favour</h1>
+  <p class="header-tagline">
+    Subsurface explorer and data analyst applying geophysical methods to unlock the Earth's hidden resources and solve real-world problems.
+  </p>
+
+  <div class="header-meta">
+    <!-- Gmail brand logo -->
+    <a href="mailto:nwobifavour86@gmail.com" class="contact-link" data-tip="nwobifavour86@gmail.com" title="Gmail">
+      <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+        <rect width="56" height="56" rx="12" fill="#ffffff"/>
+        <!-- Gmail M envelope -->
+        <path d="M10 16h36v24H10z" fill="#f2f2f2"/>
+        <!-- red left flap -->
+        <path d="M10 16 L28 30 L10 40 Z" fill="#EA4335"/>
+        <!-- blue right flap -->
+        <path d="M46 16 L28 30 L46 40 Z" fill="#4285F4"/>
+        <!-- yellow bottom-left -->
+        <path d="M10 40 L28 30 L10 16 V40Z" fill="#FBBC05"/>
+        <!-- green bottom-right -->
+        <path d="M46 40 L28 30 L46 16 V40Z" fill="#34A853"/>
+        <!-- white M shape over top -->
+        <path d="M10 16 L28 30 L46 16 H10Z" fill="#EA4335"/>
+        <!-- the actual M line -->
+        <path d="M10 16 L28 31 L46 16" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <!-- Phone icon — green branded -->
+    <a href="tel:+2348104028527" class="contact-link" data-tip="+234 810 402 8527" title="Phone">
+      <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+        <rect width="56" height="56" rx="12" fill="#25D366"/>
+        <path d="M20 14c-.5 0-1 .3-1.3.7l-2.5 4.5c-.3.6-.2 1.3.2 1.8 2.4 3.2 5.5 6.1 8.8 8.5 3.3 2.4 7 4.3 10.8 5.5.6.2 1.3 0 1.7-.5l3.2-3.8c.4-.5.4-1.2 0-1.7l-4-4.5c-.4-.5-1.1-.6-1.6-.3l-3.2 1.8c-1.5-.9-2.9-2-4.1-3.2-1.2-1.2-2.3-2.6-3.2-4.1l1.8-3.2c.3-.5.2-1.2-.3-1.6L21.3 14.3c-.3-.2-.7-.3-1.3-.3z" fill="white"/>
+      </svg>
+    </a>
+    <!-- LinkedIn brand logo -->
+    <a href="https://www.linkedin.com/in/favournwobi" target="_blank" rel="noopener" class="contact-link" data-tip="linkedin.com/in/favournwobi" title="LinkedIn">
+      <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+        <rect width="56" height="56" rx="12" fill="#0A66C2"/>
+        <path d="M17 22h5v17h-5V22zm2.5-7a2.9 2.9 0 110 5.8 2.9 2.9 0 010-5.8z" fill="white"/>
+        <path d="M27 22h4.8v2.3h.1c.7-1.2 2.3-2.5 4.7-2.5 5 0 6 3.3 6 7.5V39h-5v-8.7c0-2.1 0-4.7-2.9-4.7-2.9 0-3.3 2.2-3.3 4.6V39H27V22z" fill="white"/>
+      </svg>
+    </a>
+  </div>
+  <p class="scroll-hint">Scroll to explore</p>
+</header>
 
 <main>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="container">
-      <p class="hero-label">Data Analyst &amp; Storyteller</p>
-      <h1 class="hero-name">Your <em>Name</em></h1>
-      <p class="hero-title">Turning data into decisions.</p>
-      <p class="hero-desc">
-        I work at the intersection of statistics, code, and clear communication —
-        transforming messy datasets into insights that actually get used.
-        Comfortable across the full stack: from raw SQL to polished dashboards.
-      </p>
-      <a href="#projects" class="hero-cta">
-        View my work
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M2 7h10M8 3l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- TOOLS -->
-  <section id="tools">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-num">01</span>
-        <h2 class="section-title">Tools &amp; Skills</h2>
-      </div>
-      <div class="tools-grid reveal">
-        <div class="tool-card">
-          <div class="tool-icon">Py</div>
-          <div class="tool-name">Python</div>
-          <div class="tool-desc">pandas, NumPy, matplotlib, seaborn, scikit-learn</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-icon">SQL</div>
-          <div class="tool-name">SQL</div>
-          <div class="tool-desc">PostgreSQL, BigQuery, dbt, query optimization</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-icon">R</div>
-          <div class="tool-name">R</div>
-          <div class="tool-desc">tidyverse, ggplot2, R Markdown, statistical modeling</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-icon">⬛</div>
-          <div class="tool-name">Tableau</div>
-          <div class="tool-desc">Dashboards, calculated fields, Tableau Public</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-icon">PBI</div>
-          <div class="tool-name">Power BI</div>
-          <div class="tool-desc">DAX, data modeling, Power Query, report design</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-icon">XL</div>
-          <div class="tool-name">Excel</div>
-          <div class="tool-desc">Pivot tables, VBA, Power Pivot, advanced formulas</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Selected Projects</h2>
-      </div>
-      <div class="project-list">
-
-        <div class="project-item reveal">
-          <div>
-            <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">SQL</span>
-              <span class="tag">Tableau</span>
-            </div>
-            <h3 class="project-name">Customer Churn Prediction Model</h3>
-            <p class="project-desc">
-              Built an end-to-end churn prediction pipeline for a telecom dataset of 70k+ customers.
-              Cleaned data with pandas, trained a Random Forest classifier, and visualised results in Tableau.
-              Identified the top 3 drivers of churn, enabling targeted retention campaigns.
-            </p>
+  <!-- ── PROFILE ── -->
+  <section id="profile">
+    <p class="section-label">01 — Profile</p>
+    <div class="profile-grid">
+      <div class="geo-card">
+        <h3>At a Glance</h3>
+        <div class="stat-row">
+          <div class="stat-item">
+            <span class="stat-value">5+</span>
+            <span class="stat-label">Years of field & research experience</span>
           </div>
-          <div class="project-stat">
-            <span class="stat-num">94%</span>
-            <span class="stat-label">Accuracy</span>
+          <div class="stat-item">
+            <span class="stat-value">B.Sc.</span>
+            <span class="stat-label">Geophysics — Ambrose Alli University</span>
           </div>
-        </div>
-
-        <div class="project-item reveal">
-          <div>
-            <div class="project-tags">
-              <span class="tag">SQL</span>
-              <span class="tag">Power BI</span>
-            </div>
-            <h3 class="project-name">Sales Performance Dashboard</h3>
-            <p class="project-desc">
-              Designed a real-time sales dashboard for a retail business, pulling data from a PostgreSQL database
-              via SQL queries and surfacing KPIs in Power BI. Reduced weekly reporting time from 3 hours to 10 minutes.
-            </p>
+          <div class="stat-item">
+            <span class="stat-value">4</span>
+            <span class="stat-label">Key research & data projects</span>
           </div>
-          <div class="project-stat">
-            <span class="stat-num">−3h</span>
-            <span class="stat-label">Weekly reporting time saved</span>
-          </div>
-        </div>
-
-        <div class="project-item reveal">
-          <div>
-            <div class="project-tags">
-              <span class="tag">R</span>
-              <span class="tag">ggplot2</span>
-              <span class="tag">Excel</span>
-            </div>
-            <h3 class="project-name">COVID-19 Impact on Employment</h3>
-            <p class="project-desc">
-              Exploratory analysis of employment trends across 12 sectors during 2019–2022 using R and ggplot2.
-              Created a reproducible R Markdown report with interactive charts. Published findings as a data story.
-            </p>
-          </div>
-          <div class="project-stat">
-            <span class="stat-num">12</span>
-            <span class="stat-label">Sectors analysed</span>
-          </div>
-        </div>
-
-        <div class="project-item reveal">
-          <div>
-            <div class="project-tags">
-              <span class="tag">Excel</span>
-              <span class="tag">Power Query</span>
-            </div>
-            <h3 class="project-name">Budget Variance Tracker</h3>
-            <p class="project-desc">
-              Automated monthly budget vs. actuals reporting for a non-profit organisation using Excel and Power Query.
-              Built dynamic pivot tables and conditional formatting rules to flag overspend instantly.
-            </p>
-          </div>
-          <div class="project-stat">
-            <span class="stat-num">5×</span>
-            <span class="stat-label">Faster reporting cycle</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-num">03</span>
-        <h2 class="section-title">About</h2>
-      </div>
-      <div class="about-grid reveal">
-        <div class="about-text">
-          <p>
-            I'm a data analyst with a passion for making numbers understandable.
-            I believe the best analysis isn't just technically correct — it's communicated
-            in a way that drives real decisions.
-          </p>
-          <p>
-            My background spans business analytics, statistical modelling, and data visualisation.
-            I'm equally comfortable writing a complex SQL query and explaining the output
-            to a non-technical stakeholder.
-          </p>
-          <p>
-            When I'm not wrangling data, I enjoy exploring open datasets, contributing to
-            analytics communities, and learning new tools as the field evolves.
-          </p>
-        </div>
-        <div class="about-facts">
-          <div class="fact-row">
-            <span class="fact-key">Role</span>
-            <span class="fact-val">Data Analyst</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-key">Location</span>
-            <span class="fact-val">Port Harcourt, Nigeria</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-key">Experience</span>
-            <span class="fact-val">3+ years</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-key">Speciality</span>
-            <span class="fact-val">Business Intelligence</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-key">Open to</span>
-            <span class="fact-val">Remote &amp; on-site roles</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-key">GitHub</span>
-            <span class="fact-val">github.com/yourusername</span>
+          <div class="stat-item">
+            <span class="stat-value">NAPE · SEG</span>
+            <span class="stat-label">Professional affiliations</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-inner reveal">
-        <h2 class="contact-title">Let's work <em>together.</em></h2>
-        <p class="contact-sub">
-          Have a dataset that needs a story? Looking for a data analyst to join your team?
-          I'd love to hear from you.
+      <div class="profile-text">
+        <p>
+          A highly motivated Geophysics graduate with strong analytical, research, and problem-solving skills. Experienced in supporting geological and environmental projects through rigorous data collection, analysis, and team collaboration. Adept at operating in both individual and team settings, leveraging a strong work ethic to quickly adapt to evolving processes and drive organisational objectives.
         </p>
-        <div class="contact-links">
-          <a href="mailto:you@email.com" class="contact-link">you@email.com</a>
-          <a href="https://linkedin.com/in/yourprofile" class="contact-link">LinkedIn</a>
-          <a href="https://github.com/yourusername" class="contact-link">GitHub</a>
-          <a href="https://public.tableau.com/profile/yourprofile" class="contact-link">Tableau Public</a>
+        <p style="margin-top:1.5rem;">
+          Committed to contributing to project success, improving operational efficiency, and supporting sustainable resource development across Nigeria and beyond.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience">
+    <p class="section-label">02 — Experience</p>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-date">Jul 2025 – Present</p>
+          <p class="exp-org">Allymagax Technical Group</p>
+        </div>
+        <div class="exp-content">
+          <h3 class="exp-role">Project Supervisor</h3>
+          <ul class="exp-bullets">
+            <li>Oversee project timelines, deliverables, and team coordination in a fully remote setting.</li>
+            <li>Provide customer service and technical support to clients, ensuring prompt resolution of enquiries.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-date">Oct 2024 – Mar 2025</p>
+          <p class="exp-org">X-Banking Agency</p>
+        </div>
+        <div class="exp-content">
+          <h3 class="exp-role">Virtual Customer Service Representative</h3>
+          <ul class="exp-bullets">
+            <li>Managed client relations and provided virtual representative assistance to banking customers.</li>
+            <li>Delivered responsive, professional customer support across digital channels.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-date">Jun – Aug 2022</p>
+          <p class="exp-org">Ambrose Alli University</p>
+        </div>
+        <div class="exp-content">
+          <h3 class="exp-role">Research Intern</h3>
+          <ul class="exp-bullets">
+            <li>Conducted research on geophysical methods for groundwater exploration in Nigeria.</li>
+            <li>Contributed to projects addressing water scarcity through applied geophysics.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-date">Feb – May 2022</p>
+          <p class="exp-org">Ambrose Alli University</p>
+        </div>
+        <div class="exp-content">
+          <h3 class="exp-role">Geophysics Intern</h3>
+          <ul class="exp-bullets">
+            <li>Assisted in data collection and analysis for geological surveys focused on mineral exploration across multiple Nigerian states.</li>
+            <li>Gained hands-on experience interpreting subsurface data in real field environments.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <p class="section-label">03 — Key Projects</p>
+    <div class="projects-grid">
+
+      <div class="project-card" data-num="01">
+        <h3>Aquifer Assessment — Irrua, Edo State</h3>
+        <p>Applied pumping test and Vertical Electrical Sounding (VES) data to evaluate groundwater potential and aquifer characteristics at Annunciation Catholic College. Final year research project (2023).</p>
+        <span class="project-tag">Hydrogeophysics</span>
+      </div>
+
+      <div class="project-card" data-num="02">
+        <h3>Niger Delta Seismic Data Analysis</h3>
+        <p>Analyzed seismic data from the Niger Delta region using MATLAB to generate visual representations of subsurface geological structures, supporting petroleum exploration insights.</p>
+        <span class="project-tag">Petroleum Exploration</span>
+      </div>
+
+      <div class="project-card" data-num="03">
+        <h3>Benin Coastal Geological Survey</h3>
+        <p>Collaborated with a multidisciplinary team to conduct geological mapping across the Benin Coastal Region, gaining practical experience in data collection and field interpretation.</p>
+        <span class="project-tag">Field Survey</span>
+      </div>
+
+      <div class="project-card" data-num="04" style="padding:0;overflow:hidden;cursor:pointer;" onclick="document.getElementById('greencore-modal').style.display='flex'" title="Click to view project summary">
+        <div style="position:relative;overflow:hidden;">
+          <img src="greencore-dashboard.png" alt="GreenCore Sales Dashboard" style="width:100%;display:block;transition:transform 0.4s ease;"/>
+          <div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;" class="card-overlay">
+            <span style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,0.6);padding:0.5rem 1.2rem;">View Summary</span>
+          </div>
+        </div>
+        <div style="padding:2rem 2rem 1.8rem;">
+          <h3 style="margin-bottom:0.7rem;">GreenCore Sales Performance Dashboard</h3>
+          <p>Excel dashboard analysing 150 transactions across 5 reps, 5 product categories &amp; 6 Nigerian regions — uncovering margin leakage and strategic growth opportunities.</p>
+          <div style="margin-top:1.2rem;">
+            <span class="project-tag">Data Analysis</span>
+            <span class="project-tag" style="margin-left:0.5rem;">Excel · Power BI</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <p class="section-label">04 — Skills</p>
+    <div class="skills-grid">
+
+      <div class="skill-block">
+        <p class="skill-cat">Geophysical</p>
+        <div class="skill-tags">
+          <span class="tag">Seismic Processing</span>
+          <span class="tag">Seismic Analysis</span>
+          <span class="tag">Geophysical Exploration</span>
+          <span class="tag">Environmental Geophysics</span>
+          <span class="tag">Remote Sensing</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <p class="skill-cat">Geological</p>
+        <div class="skill-tags">
+          <span class="tag">Geological Mapping</span>
+          <span class="tag">Subsurface Interpretation</span>
+          <span class="tag">Field Surveys</span>
+          <span class="tag">Lab Analysis</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <p class="skill-cat">Data &amp; Software</p>
+        <div class="skill-tags">
+          <!-- branded icon badges -->
+          <span class="tool-badge">
+            <!-- Excel: custom green X SVG -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="3" fill="#217346"/>
+              <path d="M7 7l3.5 5L7 17h2.5l2.25-3.5L14 17h2.5l-3.5-5 3.5-5H14l-2.25 3.5L9.5 7H7z" fill="white"/>
+            </svg>
+            Excel
+          </span>
+          <span class="tool-badge">
+            <!-- SQL: database icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f29111" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="12" cy="6" rx="8" ry="3" stroke="#f29111" stroke-width="1.5" fill="none"/>
+              <path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="#f29111" stroke-width="1.5" fill="none"/>
+              <path d="M4 10v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" stroke="#f29111" stroke-width="1.5" fill="none"/>
+            </svg>
+            SQL
+          </span>
+          <span class="tool-badge">
+            <!-- Power BI: official yellow -->
+            <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="13" width="4" height="8" rx="1" fill="#f2c811"/>
+              <rect x="10" y="8"  width="4" height="13" rx="1" fill="#f2c811" opacity="0.85"/>
+              <rect x="17" y="3" width="4" height="18" rx="1" fill="#f2c811" opacity="0.7"/>
+            </svg>
+            Power BI
+          </span>
+          <span class="tool-badge">
+            <!-- Python: blue/yellow -->
+            <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.5 2C8.46 2 6.5 3.46 6.5 5v2.5h5V8H5C3.34 8 2 9.34 2 11v3c0 1.66 1.34 3 3 3h1.5v-2.5c0-1.66 1.34-3 3-3h4c1.66 0 3-1.34 3-3V5c0-1.54-1.96-3-5-3zm-1 2.25a.75.75 0 110 1.5.75.75 0 010-1.5z" fill="#3776ab"/>
+              <path d="M12.5 22c3.04 0 5-1.46 5-3v-2.5h-5V16h6.5c1.66 0 3-1.34 3-3v-3c0-1.66-1.34-3-3-3H17.5v2.5c0 1.66-1.34 3-3 3h-4c-1.66 0-3 1.34-3 3v3.5c0 1.54 1.96 3 5 3zm1-2.25a.75.75 0 110-1.5.75.75 0 010 1.5z" fill="#ffd43b"/>
+            </svg>
+            Python
+          </span>
+          <span class="tool-badge">
+            <i class="fas fa-database" style="color:#a0a0a0;font-size:0.9rem;"></i> MATLAB
+          </span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <p class="skill-cat">Professional</p>
+        <div class="skill-tags">
+          <span class="tag">Research & Academic Writing</span>
+          <span class="tag">Project Management</span>
+          <span class="tag">Team Leadership</span>
+          <span class="tag">Presentation & Reporting</span>
+          <span class="tag">Critical Thinking</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section id="education">
+    <p class="section-label">05 — Education</p>
+    <div class="edu-row">
+      <div class="edu-item">
+        <h3 class="edu-degree">B.Sc. Geophysics</h3>
+        <p class="edu-school">Ambrose Alli University, Edo State</p>
+        <p class="edu-year">2018 – 2023</p>
+        <p class="edu-courses">Geophysical Exploration · Seismology · Geodynamics · Data Analysis · Remote Sensing · Environmental Geophysics</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS & AFFILIATIONS ── -->
+  <section id="certs">
+    <p class="section-label">06 — Certifications &amp; Affiliations</p>
+    <div class="certs-grid">
+      <div>
+        <p style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;">Certifications</p>
+        <div class="cert-list">
+          <div class="cert-item">
+            <span class="cert-dot"></span>
+            <span>Data Analysis Training (Excel, SQL, Power BI) — 2026</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-dot"></span>
+            <span>National Youth Service Corps (NYSC) — 2026</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;">Affiliations</p>
+        <div class="affil-list">
+          <div class="affil-item">
+            <span class="cert-dot"></span>
+            <span>Alumni Member — Nigerian Association of Petroleum Exploration (NAPE), 2023–Present</span>
+          </div>
+          <div class="affil-item">
+            <span class="cert-dot"></span>
+            <span>Student Member — Society of Exploration Geophysicists (SEG), 2022–Present</span>
+          </div>
         </div>
       </div>
     </div>
@@ -568,25 +653,93 @@
 
 </main>
 
+<!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-inner">
-    <span class="footer-copy">© 2026 Your Name. Built with HTML &amp; care.</span>
-    <span class="footer-copy">Data Analyst Portfolio</span>
+  <p class="footer-name">Nwobi Ugochukwu Favour</p>
+  <div class="footer-contact">
+    <!-- Gmail -->
+    <a href="mailto:nwobifavour86@gmail.com" class="footer-icon-link" data-tip="nwobifavour86@gmail.com" title="Gmail">
+      <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+        <rect width="50" height="50" rx="10" fill="#ffffff"/>
+        <path d="M9 14h32v22H9z" fill="#f2f2f2"/>
+        <path d="M9 14 L25 27 L9 36 Z" fill="#EA4335"/>
+        <path d="M41 14 L25 27 L41 36 Z" fill="#4285F4"/>
+        <path d="M9 14 L25 27 L41 14 H9Z" fill="#EA4335"/>
+        <path d="M9 14 L25 28 L41 14" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M9 36h32v0" fill="none"/>
+      </svg>
+    </a>
+    <!-- Phone -->
+    <a href="tel:+2348104028527" class="footer-icon-link" data-tip="+234 810 402 8527" title="Phone">
+      <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+        <rect width="50" height="50" rx="10" fill="#25D366"/>
+        <path d="M18 12c-.5 0-1 .3-1.2.7l-2.3 4c-.3.6-.2 1.3.2 1.7 2.2 2.9 5 5.5 8 7.7 3 2.2 6.3 3.9 9.8 5 .6.2 1.2 0 1.5-.5l2.9-3.4c.4-.5.4-1.1 0-1.5l-3.6-4.1c-.4-.5-1-.6-1.5-.3L29 23c-1.4-.8-2.7-1.8-3.8-2.9-1.1-1.1-2.1-2.4-2.9-3.8l1.6-2.9c.3-.5.2-1.1-.3-1.5L19.3 8.3c-.3-.2-.7-.3-1.3-.3z" fill="white" transform="translate(1,2)"/>
+      </svg>
+    </a>
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/favournwobi" target="_blank" rel="noopener" class="footer-icon-link" data-tip="linkedin.com/in/favournwobi" title="LinkedIn">
+      <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+        <rect width="50" height="50" rx="10" fill="#0A66C2"/>
+        <path d="M15 20h5v16h-5V20zm2.5-6.5a2.6 2.6 0 110 5.2 2.6 2.6 0 010-5.2z" fill="white"/>
+        <path d="M24 20h4.5v2.2h.1c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.4 3 5.4 6.9V36h-4.5V28c0-1.9 0-4.4-2.7-4.4-2.7 0-3.1 2.1-3.1 4.2V36H24V20z" fill="white"/>
+      </svg>
+    </a>
   </div>
 </footer>
 
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => obs.observe(el));
-</script>
+<!-- ── GREENCORE MODAL ── -->
+<div id="greencore-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.78);align-items:center;justify-content:center;padding:2rem;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#0d0d0d;color:#f7f3eb;max-width:780px;width:100%;max-height:90vh;overflow-y:auto;position:relative;border-top:3px solid #4caf50;">
+    <!-- close button -->
+    <button onclick="document.getElementById('greencore-modal').style.display='none'" style="position:sticky;top:0;float:right;background:transparent;border:none;color:#4caf50;font-size:1.6rem;cursor:pointer;padding:0.8rem 1.2rem;line-height:1;z-index:1;" title="Close">✕</button>
+    <!-- dashboard image -->
+    <img src="greencore-dashboard.png" alt="GreenCore Dashboard" style="width:100%;display:block;"/>
+    <!-- content -->
+    <div style="padding:2.5rem;">
+      <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:#4caf50;margin-bottom:1rem;">Data Analysis · Excel · Power BI</p>
+      <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.9rem;font-weight:600;line-height:1.2;margin-bottom:1.5rem;">GreenCore Sales Performance Dashboard</h2>
+      <p style="font-size:1rem;font-weight:500;line-height:1.8;color:rgba(247,243,235,0.85);margin-bottom:1.5rem;">
+        Analysed 150 sales transactions for Green Core Distribution LTD, covering 5 sales representatives, 5 product categories, and 6 regions across Nigeria. Built a fully interactive Excel dashboard and authored an executive business brief for management.
+      </p>
+      <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#4caf50;margin-bottom:0.9rem;">Key Findings</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.8rem;">
+        <li style="font-size:0.95rem;font-weight:500;color:rgba(247,243,235,0.85);line-height:1.65;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">—</span> Revenue of ₦20,967,000 against COGS of ₦17,890,000 yielded a tight profit of ₦3,077,000 — flagging a heavy cost structure.</li>
+        <li style="font-size:0.95rem;font-weight:500;color:rgba(247,243,235,0.85);line-height:1.65;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">—</span> Monthly units sold declined steadily from 134 (August) to 81 (November), indicating seasonality or weakening demand.</li>
+        <li style="font-size:0.95rem;font-weight:500;color:rgba(247,243,235,0.85);line-height:1.65;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">—</span> Electronics dominated category profit at ₦1,121,000; Fashion (₦561,000) and Home Appliances (₦462,000) lagged significantly.</li>
+        <li style="font-size:0.95rem;font-weight:500;color:rgba(247,243,235,0.85);line-height:1.65;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">—</span> John Aluko led revenue generation at ₦5,783,000 while Peace Danjuma trailed at ₦4,829,000 — revealing a performance gap across the sales team.</li>
+        <li style="font-size:0.95rem;font-weight:500;color:rgba(247,243,235,0.85);line-height:1.65;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">—</span> Low-margin products (Sugar ₦92K, Jeans ₦101K, Microwave ₦128K) were identified as candidates for pricing review or discontinuation.</li>
+      </ul>
+      <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#4caf50;margin-bottom:0.9rem;">Strategic Recommendations</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
+        <li style="font-size:0.95rem;font-weight:500;color:rgba(247,243,235,0.85);line-height:1.65;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">—</span> Shift focus from revenue targets to margin-led selling — track contribution per product line.</li>
+        <li style="font-size:0.95rem;font-weight:500;color:rgba(247,243,235,0.85);line-height:1.65;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">—</span> Implement a sales rep performance framework with monthly rankings, coaching, and profit-linked incentives.</li>
+        <li style="font-size:0.95rem;font-weight:500;color:rgba(247,243,235,0.85);line-height:1.65;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">—</span> Replicate the top-performing region's pricing, distribution channels, and customer mix into weaker regions.</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
+<style>
+  #greencore-modal::-webkit-scrollbar { width: 6px; }
+  #greencore-modal > div::-webkit-scrollbar { width: 6px; }
+  #greencore-modal > div::-webkit-scrollbar-track { background: #1a1a1a; }
+  #greencore-modal > div::-webkit-scrollbar-thumb { background: #2e7d32; }
+  /* card image hover */
+  [onclick*="greencore-modal"]:hover .card-overlay { opacity: 1 !important; }
+  [onclick*="greencore-modal"]:hover img { transform: scale(1.03); }
+</style>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  sections.forEach(s => obs.observe(s));
+
+  // close modal on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('greencore-modal').style.display = 'none';
+  });
+</script>
 </body>
 </html>
